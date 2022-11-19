@@ -5,17 +5,15 @@ const Pokemon = (props) => {
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=807")
-      .then((response) => response.json())
-      .then((response) => setPoke(response.results));
+      .then((response) => {
+        setPoke(response.data.results);
+      });
   }, []);
 
   return (
     <div>
       <ol>
-        {poke.length > 0 &&
-          poke.map((po, i) => {
-            return <li key={i}>{po.name}</li>;
-          })}
+        {poke.length > 0 && poke.map((po, i) => <li key={i}>{po.name}</li>)}
       </ol>
     </div>
   );
